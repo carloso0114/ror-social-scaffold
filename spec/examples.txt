@@ -1,0 +1,10 @@
+example_id                           | status | run_time        |
+------------------------------------ | ------ | --------------- |
+./spec/models/unit-test_spec.rb[1:1] | passed | 0.09269 seconds |
+./spec/models/unit-test_spec.rb[1:2] | passed | 0.05341 seconds |
+./spec/models/unit-test_spec.rb[2:1] | passed | 0.01538 seconds |
+./spec/models/unit-test_spec.rb[2:2] | passed | 0.01254 seconds |
+./spec/models/unit-test_spec.rb[2:3] | passed | 0.01099 seconds |
+./spec/models/unit-test_spec.rb[2:4] | passed | 0.00157 seconds |
+./spec/models/unit-test_spec.rb[2:5] | passed | 0.10264 seconds |
+./spec/models/unit-test_spec.rb[3:1] | passed | 0.54512 seconds |
