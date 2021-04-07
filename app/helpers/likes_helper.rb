@@ -1,8 +1,5 @@
 module LikesHelper
-
-def num_of_likes(post)
-    likes = Like.where(post_id: post).length
-    return likes
-end
-
+  def num_of_likes(post)
+    Like.where(post_id: post).length
+  end
 end
