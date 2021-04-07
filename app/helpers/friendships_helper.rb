@@ -1,6 +1,7 @@
 module FriendshipsHelper
   def verify_friendship(friend_id)
-    Friendship.where('(user_id = ? and friend_id = ?) OR (user_id = ? and friend_id = ?)', current_user.id, friend_id, friend_id, current_user.id).first
+    Friendship.where('(user_id = ? and friend_id = ?) OR (user_id = ? and friend_id = ?)',
+     current_user.id, friend_id, friend_id, current_user.id).first
   end
 
   def friendship_button(user)
