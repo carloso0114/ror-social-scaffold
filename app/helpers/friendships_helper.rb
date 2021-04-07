@@ -1,12 +1,11 @@
 module FriendshipsHelper
   def verify_friendship(friend_id)
-    Friendship.where('(user_id = ? and friend_id = ?) OR (user_id = ? and friend_id = ?)',
-                     current_user.id, friend_id, friend_id, current_user.id).first
+    Friendship.where('(user_id = ? and friend_id = ?) OR (user_id = ? and friend_id = ?)', current_user.id, friend_id, friend_id, current_user.id).first
   end
 
   def friendship_button(user)
     friendship = verify_friendship(user)
-    if current_user != user
+    if current_user !=user
       if friendship.nil?
 
         (link_to 'Add Friend', users_path(params: { friend_id: user.id, user_id: current_user.id, confirmed: false }),
@@ -26,7 +25,7 @@ module FriendshipsHelper
 
   def friendship_button2(user)
     friendship = verify_friendship(user)
-    if current_user != user
+    if current_user !=user
       if friendship.nil?
 
         (link_to 'Add Friend', used_path(params: { friend_id: user.id, user_id: current_user.id, confirmed: false }),
