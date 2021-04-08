@@ -36,7 +36,7 @@ module FriendshipsHelper
       content_tag(:button, 'Already friends', class: %w[btn btn-success disabled])
 
     elsif friendship.user_id == user.id
-      (link_to 'Accept Friendship', friendship_path(friendship.id), method: :put, class: 'btn btn-warning') +
+      (link_to 'Accept Friendship', friendship_path(friendship.id), method: :put) +
         (link_to 'Reject Friendship', friendship_path(friendship.id), method: :delete, class: 'btn btn-warning')
     else
       content_tag(:button, 'Pending Response', class: %w[btn btn-warning disabled])

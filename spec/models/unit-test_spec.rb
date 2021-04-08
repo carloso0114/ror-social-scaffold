@@ -95,6 +95,34 @@ RSpec.describe 'Post test', type: :feature do
   end
 end
 
+RSpec.describe 'Likes test', type: :feature do
+  it 'create new like' do
+    visit new_user_registration_path
+      within('.new_user') do
+        fill_in 'Name', with: 'carlos'
+        fill_in 'Email', with: 'carlos@gmail.com'
+        fill_in 'Password', with: '123456'
+        fill_in 'Password confirmation', with: '123456'
+      end
+      click_button 'Sign up'
+      expect(current_path).to eq('/')
+
+    visit root_path
+    within('.new_post') do
+      fill_in 'post_content', with: 'Work Please.'
+    end
+    click_button 'Save'
+    expect(Post.count).to eq 1
+ 
+    visit root_path
+    within('.post-liking') do
+      click_link 'like'
+    end
+    
+    expect(Like.count).to eq 1
+  end
+end
+
 
 RSpec.describe User, type: :model do
   it { should have_many(:posts) }
