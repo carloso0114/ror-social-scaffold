@@ -7,7 +7,7 @@
       <span class='post-date'> <%= post.created_at.strftime("%Y/%m/%d") %> </span> <br>
       <span style='font-size: 13px;'>Likes: <%= num_of_likes(post) %> </span>
       
-     <%= link_to('lik', post_likes_path(post_id: post.id), method: :post) %>
+     <%= link_to('like', post_likes_path(post_id: post.id), method: :post) %>
     </div>
   </div>
   <p class="post-content">
