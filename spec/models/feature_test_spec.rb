@@ -131,42 +131,9 @@ RSpec.describe 'Likes test', type: :feature do
   end
 end
 
-RSpec.describe 'Friendship test', type: :feature do
-  it 'create new friendship' do
-    visit new_user_registration_path
-    within('.new_user') do
-      fill_in 'Name', with: 'carlos'
-      fill_in 'Email', with: 'carlos@gmail.com'
-      fill_in 'Password', with: '123456'
-      fill_in 'Password confirmation', with: '123456'
-    end
-    click_button 'Sign up'
-    expect(current_path).to eq('/')
+# rubocop:disable Metrics/BlockLength
 
-    visit root_path
-    within('.nav') do
-      click_link 'Sign out'
-    end
-
-    visit new_user_registration_path
-    within('.new_user') do
-      fill_in 'Name', with: 'carlos2'
-      fill_in 'Email', with: 'carlos2@gmail.com'
-      fill_in 'Password', with: '123456'
-      fill_in 'Password confirmation', with: '123456'
-    end
-    click_button 'Sign up'
-    expect(User.count).to eq 2
-
-    visit users_path
-    within('.users-list') do
-      click_link 'Add Friend'
-    end
-    expect(Friendship.count).to eq 1
-  end
-end
-
-RSpec.describe 'Friendship test', type: :feature do
+RSpec.describe 'Confirm Friendship request', type: :feature do
   it 'accept friendship to check inverse row in friendship table' do
     visit new_user_registration_path
     within('.new_user') do
@@ -206,9 +173,10 @@ RSpec.describe 'Friendship test', type: :feature do
     within('.users-list') do
       click_link 'Accept Friendship'
     end
-    friends1 = Friendship.where(('user_id = 1' and 'friend_id= 2'))
-    expect(friends1[0].confirmed).to be(true)
-    friends1 = Friendship.where(('user_id = 2' and 'friend_id= 1'))
+    user = User.find_by(email: 'carlos@gmail.com')
+    friend = User.find_by(email: 'carlos2@gmail.com')
+    friends1 = Friendship.where('user_id = ? and friend_id= ?', user.id, friend.id)
     expect(friends1[0].confirmed).to be(true)
   end
 end
+# rubocop:enable Metrics/BlockLength
