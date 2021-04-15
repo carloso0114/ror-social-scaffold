@@ -1,52 +1,5 @@
 require 'rails_helper'
 
-# RSpec.describe User, type: :model do
-#   it 'has none to begin with' do
-#     expect(User.count).to eq 0
-#   end
-
-#   it 'has one after adding one' do
-#     User.create(name: C , email: C@gmail.com, password: 123456, password_confirmation: 123456)
-#     expect(User.count).to eq 1
-#   end
-
-#   it 'has none after one was created in a previous example' do
-#     expect(User.count).to eq 0
-#   end
-# end
-
-# RSpec.describe Attendance, type: :model do
-#   it { should belong_to(:user) }
-#   it { should belong_to(:event) }
-# end
-
-# RSpec.describe Event, type: :model do
-#   it { should have_many(:attendances) }
-#   it { should have_many(:attendees) }
-#   it { should belong_to(:creator) }
-# end
-
-# RSpec.describe User, type: :model do
-#   it { should have_many(:created_events) }
-#   it { should have_many(:attendances) }
-#   it { should have_many(:attended_events) }
-# end
-
-# RSpec.describe 'Sign in test', type: :feature do
-#   before :each do
-#     User.create(username: 'carlos')
-#   end
-
-#   it 'signs me in' do
-#     visit login_path
-#     within('.login-form') do
-#       fill_in 'Username', with: 'carlos'
-#     end
-#     click_button 'Log in'
-#     expect(current_path).to eq('/users/1')
-#   end
-# end
-
 RSpec.describe 'Sign up test', type: :feature do
   it 'create new account' do
     visit new_user_registration_path
@@ -210,6 +163,58 @@ RSpec.describe 'Friendship test', type: :feature do
       click_link 'Add Friend'
     end
     expect(Friendship.count).to eq 1
+  end
+end
+
+RSpec.describe 'Friendship test', type: :feature do
+  it 'accept friendship to check inverse row in friendship table' do
+    visit new_user_registration_path
+    within('.new_user') do
+      fill_in 'Name', with: 'carlos'
+      fill_in 'Email', with: 'carlos@gmail.com'
+      fill_in 'Password', with: '123456'
+      fill_in 'Password confirmation', with: '123456'
+    end
+    click_button 'Sign up'
+
+    visit root_path
+    within('.nav') do
+      click_link 'Sign out'
+    end
+
+    visit new_user_registration_path
+    within('.new_user') do
+      fill_in 'Name', with: 'carlos2'
+      fill_in 'Email', with: 'carlos2@gmail.com'
+      fill_in 'Password', with: '123456'
+      fill_in 'Password confirmation', with: '123456'
+    end
+    click_button 'Sign up'
+
+    visit users_path
+    within('.users-list') do
+      click_link 'Add Friend'
+    end
+
+    visit root_path
+    within('.nav') do
+      click_link 'Sign out'
+    end
+
+    visit new_user_session_path
+    within('.new_user') do
+      fill_in 'Email', with: 'carlos@gmail.com'
+      fill_in 'Password', with: '123456'
+    end
+    click_button 'Log in'
+
+    visit users_path
+    within('.users-list') do
+      click_link 'Accept Friendship'
+    end
+
+    expect(Friendship.where(("user_id = 2" and "friend_id= 1"))).to be #<Friendship::ActiveRecord_Relation:18180> => #<ActiveRecord::Relation [#<Friendship id: 1, user_id: 2, friend_id: 1, confirmed: true, created_at: "2021-04-15 19:47:26.877767000 +0000", updated_at: "2021-04-15 19:47:26.916877000 +0000">]>
+    expect(Friendship.where(("user_id = 1" and "friend_id= 2"))).to be #<Friendship::ActiveRecord_Relation:18160> => #<ActiveRecord::Relation [#<Friendship id: 2, user_id: 1, friend_id: 2, confirmed: true, created_at: "2021-04-15 19:50:09.648416000 +0000", updated_at: "2021-04-15 19:50:09.648416000 +0000">]>
   end
 end
 
