@@ -213,8 +213,8 @@ RSpec.describe 'Friendship test', type: :feature do
       click_link 'Accept Friendship'
     end
 
-    expect(Friendship.where(("user_id = 2" and "friend_id= 1"))).to be #<Friendship::ActiveRecord_Relation:18180> => #<ActiveRecord::Relation [#<Friendship id: 1, user_id: 2, friend_id: 1, confirmed: true, created_at: "2021-04-15 19:47:26.877767000 +0000", updated_at: "2021-04-15 19:47:26.916877000 +0000">]>
-    expect(Friendship.where(("user_id = 1" and "friend_id= 2"))).to be #<Friendship::ActiveRecord_Relation:18160> => #<ActiveRecord::Relation [#<Friendship id: 2, user_id: 1, friend_id: 2, confirmed: true, created_at: "2021-04-15 19:50:09.648416000 +0000", updated_at: "2021-04-15 19:50:09.648416000 +0000">]>
+    expect(Friendship.where(('user_id = 2' and 'friend_id= 1'))).to be # <Friendship::ActiveRecord_Relation:18180> => #<ActiveRecord::Relation [#<Friendship id: 1, user_id: 2, friend_id: 1, confirmed: true, created_at: "2021-04-15 19:47:26.877767000 +0000", updated_at: "2021-04-15 19:47:26.916877000 +0000">]>
+    expect(Friendship.where(('user_id = 1' and 'friend_id= 2'))).to be # <Friendship::ActiveRecord_Relation:18160> => #<ActiveRecord::Relation [#<Friendship id: 2, user_id: 1, friend_id: 2, confirmed: true, created_at: "2021-04-15 19:50:09.648416000 +0000", updated_at: "2021-04-15 19:50:09.648416000 +0000">]>
   end
 end
 
