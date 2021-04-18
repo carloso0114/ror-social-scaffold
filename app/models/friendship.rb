@@ -8,4 +8,5 @@ class Friendship < ApplicationRecord
                       user_id: friend_id,
                       confirmed: true)
   end
+
 end
