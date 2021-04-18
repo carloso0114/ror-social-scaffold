@@ -29,7 +29,6 @@ module FriendshipsHelper
     return unless current_user != user
 
     if friendship.nil?
-
       (link_to 'Add Friend', used_path(params: { friend_id: user.id, user_id: current_user.id, confirmed: false }),
                method: :post, class: 'btn btn-primary')
     elsif friendship.confirmed
