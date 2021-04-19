@@ -20,7 +20,7 @@ class PostsController < ApplicationController
   private
 
   def timeline_posts
-    @timeline_posts = Post.all.where(user_id: current_user.id, )
+    @timeline_posts = Post.all.where(user_id: current_user.id)
     @all_friends = Friendship.where(user_id: current_user.id, confirmed: true)
 
     @all_friends.each do |friend|
