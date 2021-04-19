@@ -9,7 +9,7 @@
 
 ## Live Demo
 
-[Social Media App](https://fierce-sands-66564.herokuapp.com/users/sign_in)
+[Social Media App](https://face-magazine.herokuapp.com/)
 
 
 ## Getting Started
