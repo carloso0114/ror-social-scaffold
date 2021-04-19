@@ -7,11 +7,7 @@ class FriendshipsController < ApplicationController
 
   def update
     @friendship = Friendship.find(params[:id])
-    @friendship.update_attribute(:confirmed, true)
-    @friendship_two = Friendship.new(user_id: @friendship.friend_id, friend_id: @friendship.user_id,
-                                     confirmed: true)
-    @friendship_two.save
-    flash[:notice] = 'Friendship has been accepted'
+    @friendship.confirm_friend
     redirect_to users_path
   end
 

@@ -5,7 +5,7 @@
 ## Built With
 
 - Ruby v3.0.0
-- Ruby on Rails v6.1.3
+- Ruby on Rails v6.1.3.
 
 ## Live Demo
 
@@ -18,8 +18,8 @@ To get a local copy up and going follow these simple example steps.
 
 ### Prerequisites
 
-Ruby: 2.6.3
-Rails: 5.2.3
+Ruby: 2.7.2
+Rails: 6.1.3.
 Postgres: >=9.5
 
 ### Setup
@@ -65,10 +65,10 @@ Open `http://localhost:3000/` in your browser.
 
 ## Authors
 
-👤 **Paul Clue**
+👤 **Carlos Ospina**
 
-- GitHub: [@PaulClue](https://github.com/Paul-Clue)
-- LinkedIn: [Paul Clue](https://www.linkedin.com/in/paul-clue/)
+- GitHub: [@Carlos Ospina](https://github.com/carloso0114)
+- LinkedIn: [Carlos Ospina](https://www.linkedin.com/in/carlosospina/)
 
 ## 🤝 Contributing
 
