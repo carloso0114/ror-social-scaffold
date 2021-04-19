@@ -11,20 +11,6 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :friendships
   has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'friend_id'
-<<<<<<< HEAD
-  has_many :confirmed_friendships, -> { where confirmed: true }, class_name: "Friendship"
-  has_many :friends, through: :confirmed_friendships
-  has_many :pending_friendships, -> { where confirmed: false }, class_name: "Friendship", foreign_key: "user_id"
-  has_many :pending_friends, through: :pending_friendships, source: :friend
-  has_many :inverted_friendships, -> { where confirmed: false }, class_name: "Friendship", foreign_key: "friend_id"
-  has_many :friend_requests, through: :inverted_friendships
-
-  def friends_and_own_posts
-    Post.where(user: (self.friends.to_a << self))
-    # This will produce SQL query with IN. Something like: select * from posts where user_id IN (1,45,874,43);
-  end
-end
-=======
   has_many :confirmed_friendships, -> { where confirmed: true }, class_name: 'Friendship'
   has_many :friends, through: :confirmed_friendships
   has_many :pending_friendships, -> { where confirmed: false }, class_name: 'Friendship', foreign_key: 'user_id'
@@ -37,4 +23,3 @@ end
     # This will produce SQL query with IN. Something like: select * from posts where user_id IN (1,45,874,43);
   end
 end
->>>>>>> dfd40787ec89632655941e67fead2ce3a44ed8a7
